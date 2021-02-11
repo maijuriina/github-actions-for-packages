@@ -57,11 +57,11 @@ jobs:
       with:
         name: webpack artifacts
         path: public
-    - name: Build container image
-      uses: docker/build-push-action@v1
+    - uses: akhileshns/heroku-deploy@v3.10.9
       with:
-        username: ${{github.actor}}
-        password: ${{secrets.GITHUB_TOKEN}}
-        registry: docker.pkg.github.com
-        repository: maijuriina/github-actions-for-packages/tic-tac-toe
-        tag_with_sha: true
+          heroku-api-key: ${{secrets.HEROKU_API_KEY}}
+      	  heroku_app-name: "ttt-docker-test"
+          heroku-email: "maiju.mustonen@gmail.com"
+          remote-branch: master
+          usedocker: true
+
